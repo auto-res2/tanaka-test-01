@@ -29,5 +29,40 @@
   },
   "add_queries": [
     "vision"
+  ],
+  "generated_queries": [
+    "diffusion transformer",
+    "flexible vision",
+    "resolution extrapolation",
+    "rotary embedding",
+    "dynamic tokens"
+  ],
+  "add_github_urls": [
+    "https://github.com/whlzy/FiT"
+  ],
+  "add_method_texts": [
+    {
+      "arxiv_id": "2410.13925v1",
+      "arxiv_url": "http://arxiv.org/abs/2410.13925v1",
+      "title": "FiTv2: Scalable and Improved Flexible Vision Transformer for Diffusion\n  Model",
+      "authors": [
+        "ZiDong Wang",
+        "Zeyu Lu",
+        "Di Huang",
+        "Cai Zhou",
+        "Wanli Ouyang",
+        "and Lei Bai"
+      ],
+      "published_date": "2024-10-17T15:51:49Z",
+      "journal": "",
+      "doi": "",
+      "summary": "\\textit{Nature is infinitely resolution-free}. In the context of this\nreality, existing diffusion models, such as Diffusion Transformers, often face\nchallenges when processing image resolutions outside of their trained domain.\nTo address this limitation, we conceptualize images as sequences of tokens with\ndynamic sizes, rather than traditional methods that perceive images as\nfixed-resolution grids. This perspective enables a flexible training strategy\nthat seamlessly accommodates various aspect ratios during both training and\ninference, thus promoting resolution generalization and eliminating biases\nintroduced by image cropping. On this basis, we present the \\textbf{Flexible\nVision Transformer} (FiT), a transformer architecture specifically designed for\ngenerating images with \\textit{unrestricted resolutions and aspect ratios}. We\nfurther upgrade the FiT to FiTv2 with several innovative designs, includingthe\nQuery-Key vector normalization, the AdaLN-LoRA module, a rectified flow\nscheduler, and a Logit-Normal sampler. Enhanced by a meticulously adjusted\nnetwork structure, FiTv2 exhibits $2\\times$ convergence speed of FiT. When\nincorporating advanced training-free extrapolation techniques, FiTv2\ndemonstrates remarkable adaptability in both resolution extrapolation and\ndiverse resolution generation. Additionally, our exploration of the scalability\nof the FiTv2 model reveals that larger models exhibit better computational\nefficiency. Furthermore, we introduce an efficient post-training strategy to\nadapt a pre-trained model for the high-resolution generation. Comprehensive\nexperiments demonstrate the exceptional performance of FiTv2 across a broad\nrange of resolutions. We have released all the codes and models at\n\\url{https://github.com/whlzy/FiT} to promote the exploration of diffusion\ntransformer models for arbitrary-resolution image generation.",
+      "github_url": "https://github.com/whlzy/FiT",
+      "main_contributions": "The paper introduces FiTv2, an enhanced version of the Flexible Vision Transformer (FiT), designed for generating images with arbitrary resolutions and aspect ratios. FiTv2 incorporates innovations like Query-Key Vector Normalization, AdaLN-LoRA, a rectified flow scheduler, and a Logit-Normal sampler, achieving faster convergence and improved scalability compared to FiT. It also presents a mixed data preprocessing strategy and demonstrates exceptional performance across a broad range of resolutions and text-to-image tasks.",
+      "methodology": "FiTv2 builds upon the DiT architecture and incorporates 2-D Rotary Positional Embedding (2-D RoPE), Swish-Gated Linear Units (SwiGLU), and Masked Multi-Head Self-Attention. It uses a flexible training pipeline that treats images as token sequences and employs rectified flow for faster convergence. The model also uses a Logit-Normal sampler for timestep selection and incorporates training-free extrapolation techniques for resolution generalization.",
+      "experimental_setup": "The model was trained and evaluated on the ImageNet dataset with various resolutions and aspect ratios. Performance was measured using metrics like Fre'chet Inception Distance (FID), sFID, Inception Score (IS), and improved Precision and Recall. The effectiveness of FiTv2 was validated through class-guided image generation and text-to-image generation tasks, comparing it against state-of-the-art CNN and transformer models.",
+      "limitations": "The original FiT architecture had limitations including underperformance on the standard ImageNet 256x256 benchmark and increased parameter count and computational costs compared to DiT. While FiTv2 addresses some of these, specific limitations of FiTv2 itself are not explicitly stated in the provided text. The reliance on a pre-trained VAE might also introduce constraints.",
+      "future_research_directions": "Future research directions include exploring the scalability of FiTv2 further, investigating the transfer learning capabilities from low to high resolution, and designing more powerful diffusion transformer models. Further investigation into improved training-free resolution extrapolation methods could also be beneficial."
+    }
   ]
 }
