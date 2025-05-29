@@ -1,0 +1,18 @@
+{
+  "model": {
+    "context_size": 256,
+    "patch_size": 16,
+    "in_channels": 3,
+    "hidden_size": 128,
+    "depth": 4,
+    "num_heads": 4,
+    "num_classes": 10
+  },
+  "experiment": {
+    "device": "cpu",
+    "region_patch_size": 128,
+    "region_overlap": 16,
+    "finetune_steps": 20,
+    "learning_rate": 1e-4
+  }
+}
