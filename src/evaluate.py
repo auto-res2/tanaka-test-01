@@ -16,11 +16,14 @@ def region_based_pipeline(image, model, patch_size=256, overlap=32, device="cpu"
     for reg in regions:
         patch = reg['patch'].to(device)  # (C, patch_size, patch_size)
         patch = patch.unsqueeze(0)       # add batch dimension -> (1, C, patch_size, patch_size)
+        resized_patch = torch.nn.functional.interpolate(
+            patch, size=(model.patch_size, model.patch_size), mode='bilinear', align_corners=False
+        )
         t = torch.tensor([0.5], device=device)
         y = torch.tensor([1], device=device, dtype=torch.long)
         grid = torch.zeros(1, 2, 1, device=device)
         mask = torch.ones(1, 1, device=device)
-        out = model.forward(patch, t, y, grid, mask, size=patch.shape[-2:])
+        out = model.forward(resized_patch, t, y, grid, mask, size=resized_patch.shape[-2:])
         region_results.append((out, reg['coords']))
         print(f"Processed patch at coords {reg['coords']}")
     merger = GatedRegionMerger(in_channels=region_results[0][0].shape[1], hidden_channels=64).to(device)
