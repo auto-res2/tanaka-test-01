@@ -1,5 +1,30 @@
 {
   "base_queries": [
     "diffusion model"
-  ]
+  ],
+  "base_github_url": "https://github.com/whlzy/FiT",
+  "base_method_text": {
+    "arxiv_id": "2402.12376v4",
+    "arxiv_url": "http://arxiv.org/abs/2402.12376v4",
+    "title": "FiT: Flexible Vision Transformer for Diffusion Model",
+    "authors": [
+      "Zeyu Lu",
+      "Zidong Wang",
+      "Di Huang",
+      "Chengyue Wu",
+      "Xihui Liu",
+      "Wanli Ouyang",
+      "Lei Bai"
+    ],
+    "published_date": "2024-02-19T18:59:07Z",
+    "journal": "",
+    "doi": "",
+    "summary": "Nature is infinitely resolution-free. In the context of this reality,\nexisting diffusion models, such as Diffusion Transformers, often face\nchallenges when processing image resolutions outside of their trained domain.\nTo overcome this limitation, we present the Flexible Vision Transformer (FiT),\na transformer architecture specifically designed for generating images with\nunrestricted resolutions and aspect ratios. Unlike traditional methods that\nperceive images as static-resolution grids, FiT conceptualizes images as\nsequences of dynamically-sized tokens. This perspective enables a flexible\ntraining strategy that effortlessly adapts to diverse aspect ratios during both\ntraining and inference phases, thus promoting resolution generalization and\neliminating biases induced by image cropping. Enhanced by a meticulously\nadjusted network structure and the integration of training-free extrapolation\ntechniques, FiT exhibits remarkable flexibility in resolution extrapolation\ngeneration. Comprehensive experiments demonstrate the exceptional performance\nof FiT across a broad range of resolutions, showcasing its effectiveness both\nwithin and beyond its training resolution distribution. Repository available at\nhttps://github.com/whlzy/FiT.",
+    "github_url": "https://github.com/whlzy/FiT",
+    "main_contributions": "The paper introduces Flexible Vision Transformer (FiT), a novel transformer architecture for diffusion models that generates images at arbitrary resolutions and aspect ratios. FiT overcomes the resolution limitations of existing Diffusion Transformers by conceptualizing images as sequences of dynamically-sized tokens, enabling flexible training and resolution extrapolation. The paper presents a flexible training pipeline, a unique transformer architecture for dynamic token length modeling, and a training-free resolution extrapolation method.",
+    "methodology": "FiT builds upon the Diffusion Transformer (DiT) architecture and incorporates 2D Rotary Positional Embedding (RoPE), Swish-Gated Linear Unit (SwiGLU), and Masked Multi-Head Self-Attention (MHSA). It employs a flexible training pipeline that preserves the original image aspect ratio and pads token sequences to a maximum length. Training-free resolution extrapolation techniques, including VisionNTK and VisionYaRN, are adapted for 2D RoPE to enhance performance across various resolutions.",
+    "experimental_setup": "The model was trained on the ImageNet dataset with a maximum resolution limit of HW ⩽ 256^2. The experiments benchmark class-conditional image generation at various resolutions (160×320, 128×384, 320×320, 224×448, and 160×480) and aspect ratios (1:1, 1:2, 1:3). Evaluation metrics include Fre'chet Inception Distance (FID), sFID, Inception Score (IS), Precision, and Recall. Both in-distribution and out-of-distribution resolutions were used for evaluation.",
+    "limitations": "The FiT-XL/2 model was trained for a limited number of steps (1.8M), resulting in slightly inferior performance at 256x256 resolution compared to DiT-XL/2. The generative capabilities of FiT-XL/2 with higher resolution training (larger token length limitation) have not been thoroughly explored. The research primarily focuses on training-free resolution extrapolation techniques, without delving into methods requiring additional training.",
+    "future_research_directions": "Future research could explore training FiT with higher resolutions and larger token lengths. Investigating resolution extrapolation methods that require additional training could further enhance the model's capabilities. Additionally, exploring different architectural modifications and their impact on flexible image synthesis would be a valuable avenue for future work."
+  }
 }
