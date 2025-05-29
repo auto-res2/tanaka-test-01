@@ -140,7 +140,7 @@ class FiT(nn.Module):
     
     def forward(self, x, t, y, grid, mask, size=None):
         B = x.shape[0]
-        x_flat = x.view(B, -1)  # (B, in_channels*patch_size**2)
+        x_flat = x.reshape(B, -1)  # (B, in_channels*patch_size**2)
         x_emb = self.x_embedder(x_flat).unsqueeze(1)  # (B, 1, hidden_size)
         t_emb = self.t_embedder(t)  # (B, hidden_size)
         y_emb = self.y_embedder(y, self.training)  # (B, hidden_size)
@@ -153,7 +153,7 @@ class FiT(nn.Module):
         for block in self.blocks:
             x_feat = block(x_feat, c, mask, freqs_cos, freqs_sin, global_adaLNm)
         out = self.final_layer(x_feat, c)  # (B, 1, patch_size**2 * in_channels)
-        out = out.view(B, self.in_channels, self.patch_size, self.patch_size)
+        out = out.reshape(B, self.in_channels, self.patch_size, self.patch_size)
         return out
 
     def finetune(self, type, unfreeze):
